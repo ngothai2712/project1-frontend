@@ -2,7 +2,7 @@
     <el-aside width="200px" style="display: flex; flex-direction: column">
         <router-link to="/home">Home</router-link>
         <router-link to="/user">User</router-link>
-        <router-link to="/profile">User Profile</router-link>
+        <router-link to="/profile">Profile</router-link>
         <a href="#" @click.prevent="logout">Log Out</a>
     </el-aside>
 </template>
