@@ -1,5 +1,8 @@
 module.exports = {
     root: true,
+    globals: {
+        Bus: true,
+    },
     env: {
         node: true,
     },

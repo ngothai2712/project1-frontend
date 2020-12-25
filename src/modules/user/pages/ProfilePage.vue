@@ -153,6 +153,11 @@ export default {
             loader.close()
             if (response?.success) {
                 this.clearFile()
+                delete response?.data?.items?.address
+                delete response?.data?.items?.phone
+                delete response?.data?.items?.phone
+                TokenService.setUser(response?.data?.items)
+                Bus.$emit('change-profile', response?.data?.items)
                 return this.$swal({
                     title: 'Profile',
                     text: 'Update Profile Successfully.',

@@ -12,13 +12,13 @@
         >
             <div class="avatar-wrapper">
                 <img
-                    :src="getUser.avatar"
+                    :src="user.avatar"
                     class="user-avatar"
                     alt=""
                     width="20px"
                     height="20px"
                 />
-                <span>{{ getUser.name }}</span>
+                <span>{{ user.name }}</span>
                 <!--                <i class="el-icon-caret-bottom" />-->
             </div>
             <el-dropdown-menu slot="dropdown">
@@ -40,13 +40,22 @@
 import TokenService from '@/helpers/token'
 
 export default {
+    data() {
+        return {
+            user: {},
+        }
+    },
     created() {
-        console.log(this.$route)
+        this.user = TokenService?.getUser()
+        Bus.$on('change-profile', data => {
+            console.log(data)
+            this.user = data
+        })
+    },
+    beforeDestroy() {
+        Bus.$off('change-profile')
     },
     computed: {
-        getUser() {
-            return TokenService?.getUser()
-        },
         getName() {
             return this.$route?.meta?.header || ''
         },

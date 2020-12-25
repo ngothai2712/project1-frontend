@@ -11,6 +11,7 @@ import './plugins/vue-lodash'
 import './plugins/vee-validate'
 
 Vue.config.productionTip = false
+window.Bus = new Vue({ name: 'Bus' })
 
 new Vue({
     router,
