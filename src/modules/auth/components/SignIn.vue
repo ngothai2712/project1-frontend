@@ -15,7 +15,7 @@
         </ValidationProvider>
 
         <ValidationProvider
-            rules="required|max:255|min:3"
+            rules="required|max:255|min:6"
             name="Password"
             v-slot="{ errors }"
         >

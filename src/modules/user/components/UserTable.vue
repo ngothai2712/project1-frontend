@@ -5,28 +5,34 @@
             <el-table-column prop="address" label="Address" sortable="custom" />
             <el-table-column prop="email" label="Email" sortable="custom" />
             <el-table-column prop="phone" label="Phone" sortable="custom" />
-            <!--            <el-table-column fixed="right" label="Actions" width="120px">-->
-            <!--                <template slot-scope="scope">-->
-            <!--                    <el-tooltip class="item" content="Edit User" placement="top">-->
-            <!--                        <el-button-->
-            <!--                            @click.native.prevent="editUser(scope.row)"-->
-            <!--                            circle-->
-            <!--                            type="primary"-->
-            <!--                        >-->
-            <!--                            <i class="el-icon-edit"></i>-->
-            <!--                        </el-button>-->
-            <!--                    </el-tooltip>-->
-            <!--                    <el-tooltip class="item" content="Delete User" placement="top">-->
-            <!--                        <el-button-->
-            <!--                            @click.native.prevent="deleteUser(scope.row)"-->
-            <!--                            circle-->
-            <!--                            type="danger"-->
-            <!--                        >-->
-            <!--                            <i class="el-icon-delete"></i>-->
-            <!--                        </el-button>-->
-            <!--                    </el-tooltip>-->
-            <!--                </template>-->
-            <!--            </el-table-column>-->
+            <el-table-column
+                fixed="right"
+                label="Actions"
+                width="100px"
+                align="center"
+                v-if="isAdmin()"
+            >
+                <template slot-scope="scope">
+                    <!--                    <el-tooltip class="item" content="Edit User" placement="top">-->
+                    <!--                        <el-button-->
+                    <!--                            @click.native.prevent="editUser(scope.row)"-->
+                    <!--                            circle-->
+                    <!--                            type="primary"-->
+                    <!--                        >-->
+                    <!--                            <i class="el-icon-edit"></i>-->
+                    <!--                        </el-button>-->
+                    <!--                    </el-tooltip>-->
+                    <el-tooltip class="item" content="Delete User" placement="top">
+                        <el-button
+                            @click.native.prevent="deleteUser(scope.row)"
+                            circle
+                            type="danger"
+                        >
+                            <i class="el-icon-delete"></i>
+                        </el-button>
+                    </el-tooltip>
+                </template>
+            </el-table-column>
         </el-table>
         <el-pagination
             :current-page.sync="currentPage"
@@ -65,10 +71,10 @@ export default {
     },
     computed: {
         currentPage: {
-            get: function() {
+            get() {
                 return this.page
             },
-            set: function(value) {
+            set(value) {
                 this.$emit('change-page', value)
             },
         },
@@ -82,6 +88,7 @@ export default {
             this.$emit('sort-data', sortProps)
         },
         async deleteUser(user) {
+            console.log('user', user)
             const confirm = await this.$swal({
                 icon: 'warning',
                 title: 'Delete User',
@@ -91,7 +98,7 @@ export default {
                 showCancelButton: true,
             })
             if (confirm?.isConfirmed) {
-                await UserRepository.delete(user.id)
+                await UserRepository.delete(user._id)
                 await this.$swal({
                     icon: 'success',
                     title: 'Delete User',

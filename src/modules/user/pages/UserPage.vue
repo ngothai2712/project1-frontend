@@ -32,7 +32,7 @@ export default {
             userList: [],
             filterForm: {},
             totalItems: 0,
-            limit: 3,
+            limit: 5,
             page: 1,
         }
     },

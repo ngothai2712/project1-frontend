@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// mixins
+import './mixins'
+
 // Import Plugins
 import './plugins/element.js'
 import './plugins/vue-sweetalert2'

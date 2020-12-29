@@ -4,7 +4,7 @@
             <el-card>
                 <el-form>
                     <ValidationProvider
-                        rules="required|max:255"
+                        rules="required|max:255|min:3"
                         name="Name"
                         v-slot="{ errors }"
                     >
@@ -142,8 +142,8 @@ export default {
             const params = {
                 name: this.profile.name,
                 email: this.profile.email,
-                phone: this.profile.phone,
-                address: this.profile.address,
+                phone: this.profile.phone ? this.profile.phone : null,
+                address: this.profile.address ? this.profile.address : null,
             }
             if (this.avatarName) params.avatar = this.avatarName
             const response = await UserRepository.update(

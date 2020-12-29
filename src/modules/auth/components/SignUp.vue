@@ -25,7 +25,7 @@
         </ValidationProvider>
 
         <ValidationProvider
-            rules="required|max:255|min:3"
+            rules="required|max:255|min:6"
             name="Password"
             vid="password"
             v-slot="{ errors }"
@@ -42,7 +42,7 @@
         </ValidationProvider>
 
         <ValidationProvider
-            rules="required|max:255|min:3|confirmed:password"
+            rules="required|max:255|min:6|confirmed:password"
             name="Confirm Password"
             v-slot="{ errors }"
         >
